@@ -1,0 +1,18 @@
+node {
+	def app
+
+	stage('Clone repository') {
+		checkout scm
+	}
+
+	stage('Build image') {
+		app = docker.build("lesson-3-nginx:${env.BUILD_NUMBER}")
+	}
+
+	stage('Push image') {
+		docker.withRegistry('https://registry.hub.docker.com', '465cc7a5-d024-4dcc-ac53-536e61eb2d5c') {
+			app.push()
+			app.push("latest")
+		}
+	}
+}

@@ -3,11 +3,10 @@ node {
 
 	stage('Setup repository') {
 		checkout scm
-		sh 'cd ./lesson-3'
 	}
 
 	stage('Build image') {
-		app = docker.build("lesson-3-nginx:${env.BUILD_NUMBER}")
+		app = docker.build("lesson-3-nginx:${env.BUILD_NUMBER} -f lesson-3/Dockerfile ")
 	}
 
 	stage('Push image') {

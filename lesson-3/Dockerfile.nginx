@@ -1,0 +1,8 @@
+FROM nginx
+
+ENV INDEX_HTML_PATH=/usr/share/nginx/html
+
+COPY ./index.html $INDEX_HTML_PATH
+COPY ./entrypoint.sh /
+
+ENTRYPOINT [ "bash", "/entrypoint.sh" ]

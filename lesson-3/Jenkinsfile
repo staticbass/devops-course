@@ -6,7 +6,7 @@ node {
 	}
 
 	stage('Build image') {
-		app = docker.build("lesson-3-nginx:${env.BUILD_NUMBER}")
+		app = docker.build("-f lesson-3/Dockerfile lesson-3-nginx:${env.BUILD_NUMBER}")
 	}
 
 	stage('Push image') {

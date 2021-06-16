@@ -1,8 +1,9 @@
 node {
 	def app
 
-	stage('Clone repository') {
+	stage('Setup repository') {
 		checkout scm
+		sh 'cd ./lesson-3'
 	}
 
 	stage('Build image') {

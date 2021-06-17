@@ -14,7 +14,7 @@ node {
 	stage('Push image') {
 		dir('./lesson-3') {
 			docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-				sh "ostrenkovlad/lesson-3-nginx:${env.BUILD_NUMBER} -f Dockerfile.nginx --build-arg MY_NAME=Vlad"
+				sh "ostrenkovlad/lesson-3-nginx:${env.BUILD_NUMBER} -f Dockerfile.nginx --build-arg MY_NAME=Vlad ."
 				sh "docker push ostrenkovlad/lesson-3-nginx:${env.BUILD_NUMBER}"
 			}
 		}

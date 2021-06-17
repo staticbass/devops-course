@@ -7,14 +7,14 @@ node {
 
 	stage('Build image') {
 		dir('./lesson-3') {
-			app = docker.build("ostrenkovlad/lesson-3-nginx:${env.BUILD_NUMBER} -f Dockerfile.nginx" , "--build-arg MY_NAME=Vlad")
+			sh "docker build ostrenkovlad/lesson-3-nginx:${env.BUILD_NUMBER} --build-arg MY_NAME=Vlad -f Dockerfile.nginx"
 		}
 	}
 
 	stage('Push image') {
 		dir('./lesson-3') {
 			docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-				app.push()
+				sh "docker push ostrenkovlad/lesson-3-nginx:${env.BUILD_NUMBER}"
 			}
 		}
 	}

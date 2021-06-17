@@ -7,7 +7,7 @@ node {
 
 	stage('Build image') {
 		dir('./lesson-3') {
-			sh "docker build ostrenkovlad/lesson-3-nginx:${env.BUILD_NUMBER} --build-arg MY_NAME=Vlad -f Dockerfile.nginx"
+			sh "docker build -t ostrenkovlad/lesson-3-nginx:${env.BUILD_NUMBER} --build-arg MY_NAME=Vlad -f Dockerfile.nginx ."
 		}
 	}
 
